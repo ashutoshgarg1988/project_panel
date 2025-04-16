@@ -51,7 +51,6 @@ const ProjectDetails = ({projectDetail}) => {
           <div className="flex-1">{projectDetail.manager}</div>
         </div>
       </div>
-
       {/* Buttons */}
       <div className="mt-8 flex space-x-4">
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" onClick={() => navigate(ROUTES.PROJECTS)}>Back</button>

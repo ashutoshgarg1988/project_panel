@@ -20,7 +20,7 @@ import { useProjects } from '../store/ProjectContext';
 
 const AddProjectForm = ({existingData}) => {
   const navigate = useNavigate();
-  const {addProject, updateProject} = useProjects();
+  const {addProject, updateProject, projects} = useProjects();
   const editInitialValues = {
     projectID: (existingData && existingData.projectID) || "",
     projectName: (existingData && existingData.projectName) || "",
@@ -49,7 +49,7 @@ const AddProjectForm = ({existingData}) => {
   });
 
   const handleSubmit = (values) => {
-    toast.success("Project details saved successfully!");
+    let exists = false;
     const projectInfo = {
       projectID: values.projectID,
       projectName: values.projectName,
@@ -59,9 +59,24 @@ const AddProjectForm = ({existingData}) => {
       manager: values.manager,
       isFavorite: false 
     };
-    console.log("projectInfoToAdd:::", projectInfo);
+    if(existingData) {
+      // Check if Project Name already exists in the projects array other than the current project being edited
+      exists = projects.some(project => project.projectName.toLowerCase() === values.projectName.toLowerCase() && values.projectName.toLowerCase() !== existingData.projectName.toLowerCase());
+    } else {
+      // Check if Project ID or name already exists in the projects array if user is trying to create a new project
+      exists = projects.some(
+        project =>
+          project.projectID.toLowerCase() === values.projectID.toLowerCase() ||
+          project.projectName.toLowerCase() === values.projectName.toLowerCase()
+      );
+    }
+    if(exists) {
+      toast.error("Project ID or Project Name already exists!");
+      return;
+    } else {
+      toast.success("Project details saved successfully!");
+    }
     existingData ? updateProject(projectInfo) : addProject(projectInfo);
-    
     navigate(ROUTES.PROJECTS);
   };
 

@@ -32,7 +32,7 @@ function App() {
             <span className="px-2">TOPBAR</span>
           </div>
           {/* Main content */}
-          <div className="flex-1 p-4 bg-gray-100">
+          <div className="flex-1 p-4 bg-gray-100" style={{ maxHeight: 'calc(100dvh - 60px)' }}>
             <Routes>
               <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.PROJECTS} replace />} />
               <Route path={ROUTES.PROJECTS} element={<ProjectListPage />} />

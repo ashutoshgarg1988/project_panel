@@ -27,7 +27,7 @@ const ProjectDetailsPage = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className='max-h-full overflow-auto relative'>
       <h2 className="text-lg font-bold mb-4">Project Details: {id}</h2>
       {/* <p>Project details and edit form for <span className='font-bold italic'>{id}</span> go here.</p> */}
       { projectDetail && <ProjectDetails projectDetail={projectDetail}/> }

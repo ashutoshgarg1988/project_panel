@@ -46,7 +46,7 @@ export default function ProjectListPage() {
 
   /** Handle Delete click */
   const handleDeleteClick = (rowData) => {
-    console.log("Delete clicked", rowData);
+    // Handle something on project listing page if needed in future after deletion
   }
 
   /** Handle Favorite click */
@@ -56,8 +56,8 @@ export default function ProjectListPage() {
 
   /** Setting Table data  */
   const columns = [
-    { id: 'projectID', label: 'project ID', align: 'center', },
-    { id: 'projectName', label: 'Project Name', align: 'center', },
+    { id: 'projectID', label: 'project ID', align: 'center' },
+    { id: 'projectName', label: 'Project Name', align: 'center' },
     {
       id: 'startDate',
       label: 'Start Date',
@@ -70,12 +70,7 @@ export default function ProjectListPage() {
       align: 'center',
       format: (value) => formatDate(value),
     },
-    {
-      id: 'manager',
-      label: 'Project Manager',
-      align: 'center',
-      format: (value) => value.toLocaleString('en-US'),
-    },
+    { id: 'manager', label: 'Project Manager', align: 'center' },
     {
       id: 'action',
       label: 'Actions',
@@ -94,10 +89,10 @@ export default function ProjectListPage() {
   ];
 
   return (
-    <div className='flex flex-col p-4'>
+    <div className='flex flex-col max-h-full overflow-auto relative'>
       <Button className="self-end" size='medium' variant='contained' sx={{width: '200px', margin: '10px', align:'right'}} onClick={()=>navigate(ROUTES.CREATE_PROJECT)}>Create Project</Button>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: '500px' }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>

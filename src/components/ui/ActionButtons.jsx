@@ -17,7 +17,6 @@ import { useProjects } from '../../store/ProjectContext';
 import { toast } from 'react-toastify';
 
 export default function ActionButtons ({ rowData, onEditClickCallBack, onDeleteClickCallBack, onFavoriteClickCallBack }) {
-    const [isFav, setIsFav] = useState(rowData.isFavorite);
     const {deleteProject} = useProjects();
     const onEditClick = (event) => {
         event.stopPropagation();
@@ -32,15 +31,15 @@ export default function ActionButtons ({ rowData, onEditClickCallBack, onDeleteC
     };
 
     const onFavoriteClick = (event) => {
-        setIsFav(prev => !prev);
         event.stopPropagation();
         onFavoriteClickCallBack && onFavoriteClickCallBack();
+        toast.success("Project Favorite status updated!")
     };
 
     return (
         <div>
             <IconButton aria-label="favorite" onClick={onFavoriteClick}>
-                {isFav ?
+                {rowData.isFavorite ?
                     <BookmarkIcon color="primary" fontSize="medium"/>
                     : <BookmarkBorderIcon color="primary" fontSize="medium"/>
                 }
