@@ -32,7 +32,9 @@ module.exports = {
   ],
   devServer: {
     static: "./dist",
+    host: '0.0.0.0',
     port: 3000,
+    allowedHosts: 'all',
     hot: true,
     open: true,
     historyApiFallback: true,
