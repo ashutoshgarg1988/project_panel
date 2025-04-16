@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import ProjectDetails from '../components/ProjectDetails';
 import { useProjects } from '../store/ProjectContext';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const ProjectDetailsPage = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const ProjectDetailsPage = () => {
     if (project) {
       setprojectdetail(project);
     } else {
-      console.error(`Project with ID ${id} not found`);
+      toast.error(`Project with ID ${id} not found`);
     }
   }, [id]);
 

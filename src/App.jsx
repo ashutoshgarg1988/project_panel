@@ -16,35 +16,53 @@ import { ROUTES } from './constants/constants';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileMenu from './components/ProfileMenu';
 import ComponentLoader from './components/ui/ComponentLoader';
 import { useProjects } from './store/ProjectContext';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const {isLoadingState} = useProjects();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkData = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(checkData);
+  },[]);
+
   return (
     <BrowserRouter>
       <div className="flex">
-        {sidebarOpen && <Sidebar />}
+        {sidebarOpen && isLoggedIn && <Sidebar />}
         <div className="flex h-dvh flex-col flex-1">
           {/* Topbar */}
-          <div className="bg-violet-50 px-1 py-4 font-bold border">
-            <div className='flex justify-between'>
-              <div>
-                <MenuIcon onClick={()=> setSidebarOpen(!sidebarOpen)} className="cursor-pointer text-gray-700"/>
-                <span className="px-2 text-gray-700">Project Panel</span>
+          {isLoggedIn &&
+            <div className="bg-violet-50 px-1 py-4 font-bold border">
+              <div className='flex justify-between'>
+                <div>
+                  <MenuIcon onClick={()=> setSidebarOpen(!sidebarOpen)} className="cursor-pointer text-gray-700"/>
+                  <span className="px-2 text-gray-700">Project Panel</span>
+                </div>
+                <ProfileMenu/>
               </div>
-              <ProfileMenu/>
             </div>
-          </div>
+          }
           {/* Main content */}
-          <div className="flex-1 p-4 bg-gray-100" style={{ maxHeight: 'calc(100dvh - 60px)' }}>
+          <div className={`flex-1 ${isLoggedIn ? 'p-4' : ''} bg-gray-100`} style={{ maxHeight: 'calc(100dvh - 60px)' }}>
             {isLoadingState ? 
               <ComponentLoader componentHeight={"calc(100dvh - 90px)"} loaderSize={100}/>
               : <Routes>
-                <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.PROJECTS} replace />} />
+                <Route
+                  path={ROUTES.HOME}
+                  element={
+                    isLoggedIn ? (
+                      <Navigate to={ROUTES.PROJECTS} replace />
+                    ) : (
+                      <LoginPage />
+                    )
+                  }
+                />
                 <Route path={ROUTES.PROJECTS} element={<ProjectListPage />} />
                 <Route path={ROUTES.PROJECT_DETAIL} element={<ProjectDetailsPage />} />
                 <Route path={ROUTES.CREATE_PROJECT} element={<CreateEditProjectPage type={'new'}/>} />
@@ -53,6 +71,7 @@ function App() {
             }
             <ToastContainer position="bottom-right" autoClose={1000} />
           </div>
+          
         </div>
       </div>
     </BrowserRouter>

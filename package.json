@@ -1,11 +1,14 @@
 {
-  "name": "react_test",
+  "name": "project_panel",
+  "homepage": "https://ashutoshgarg1988.github.io/project_panel",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -r https://github.com/ashutoshgarg1988/project_panel.git"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "formik": "^2.4.6",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0",
