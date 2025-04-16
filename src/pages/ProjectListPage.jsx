@@ -89,10 +89,10 @@ export default function ProjectListPage() {
   ];
 
   return (
-    <div className='flex flex-col max-h-full overflow-auto relative'>
+    <div className='flex flex-col h-[calc(100dvh-90px)] overflow-auto relative'>
       <Button className="self-end" size='medium' variant='contained' sx={{width: '200px', margin: '10px', align:'right'}} onClick={()=>navigate(ROUTES.CREATE_PROJECT)}>Create Project</Button>
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: '500px' }}>
+      <Paper sx={{ flex: 1, width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <TableContainer sx={{ flex: 1, overflowY: 'auto' }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
