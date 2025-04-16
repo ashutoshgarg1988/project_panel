@@ -1,3 +1,12 @@
+/**
+ * ProjectDetailsPage.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: To handle route for project details page.
+ * */
 import { useParams } from 'react-router-dom';
 import ProjectDetails from '../components/ProjectDetails';
 import { useProjects } from '../store/ProjectContext';
@@ -19,8 +28,8 @@ const ProjectDetailsPage = () => {
 
   return (
     <div>
-      <h2 className="text-lg font-bold mb-4">Editing: {id}</h2>
-      <p>Project details and edit form for <span className='font-bold italic'>{id}</span> go here.</p>
+      <h2 className="text-lg font-bold mb-4">Project Details: {id}</h2>
+      {/* <p>Project details and edit form for <span className='font-bold italic'>{id}</span> go here.</p> */}
       { projectDetail && <ProjectDetails projectDetail={projectDetail}/> }
     </div>
   );

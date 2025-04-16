@@ -1,3 +1,14 @@
+/**
+ * AddProjectForm.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 16/Apr/2025
+ * 
+ * Description: 
+ * To Add or Edit any project, existingData props receives values 
+ * in case of Edit project basis of this data I handle add/edit conditions.
+ * */
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -5,9 +16,11 @@ import { formatDateForInput } from '../utils/utility';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/constants';
+import { useProjects } from '../store/ProjectContext';
 
 const AddProjectForm = ({existingData}) => {
   const navigate = useNavigate();
+  const {addProject, updateProject} = useProjects();
   const editInitialValues = {
     projectID: (existingData && existingData.projectID) || "",
     projectName: (existingData && existingData.projectName) || "",
@@ -37,6 +50,18 @@ const AddProjectForm = ({existingData}) => {
 
   const handleSubmit = (values) => {
     toast.success("Project details saved successfully!");
+    const projectInfo = {
+      projectID: values.projectID,
+      projectName: values.projectName,
+      description: values.description,
+      startDate: values.startDate,
+      endDate: values.endDate,
+      manager: values.manager,
+      isFavorite: false 
+    };
+    console.log("projectInfoToAdd:::", projectInfo);
+    existingData ? updateProject(projectInfo) : addProject(projectInfo);
+    
     navigate(ROUTES.PROJECTS);
   };
 

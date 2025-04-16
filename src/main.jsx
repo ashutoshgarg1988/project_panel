@@ -1,5 +1,12 @@
-//https://github.com/ashutoshgarg1988/react_test
-
+/**
+ * main.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: Entry point of project.
+ * */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';

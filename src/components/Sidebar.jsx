@@ -1,3 +1,12 @@
+/**
+ * Sidebar.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: For side bar functionality
+ * */
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { ROUTES } from '../constants/constants';

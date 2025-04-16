@@ -1,4 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+/**
+ * ProjectListPage.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: To handle route for project listing page.
+ * */
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const ProjectContext = createContext();
 function createData(projectID, projectName, startDate, endDate, manager, isFavorite, description) {
@@ -8,9 +17,9 @@ function createData(projectID, projectName, startDate, endDate, manager, isFavor
 const rows = [
   createData('project_a', 'Project A', "2025-04-12T10:13:31.068Z", "2025-04-12T10:13:31.068Z", "John Doe", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
   createData('project_b', 'Project B', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "Arica Daw", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
-  createData('project_c', 'Project C', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "John Doe", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
+  createData('project_c', 'Project C', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "John Doe", true, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
   createData('project_d', 'Project D', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "Richard", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
-  createData('project_e', 'Project E', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "John Doe", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
+  createData('project_e', 'Project E', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "John Doe", true, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
   createData('project_f', 'Project F', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "Arica Daw", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
   createData('project_g', 'Project G', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "Richard", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
   createData('project_h', 'Project H', "2025-03-15T12:53:20.739Z", "2025-04-12T10:13:31.068Z", "Arica Daw", false, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
@@ -40,12 +49,36 @@ export const ProjectProvider = ({ children }) => {
     setProjects(updated);
   };
 
+  // Add a new project
+  const addProject = (newProject) => {
+    setProjects((prevProjects) => [...prevProjects, newProject]);
+  };
+
+  // Update an existing project by ID
+  const updateProject = (updatedData) => {
+    const updatedProjects = projects.map((project) =>
+      project.projectID === updatedData.projectID
+        ? { ...project, ...updatedData }
+        : project
+    );
+    setProjects(updatedProjects);
+  };
+
+  // Delete a project by ID
+  const deleteProject = (projectID) => {
+    const filtered = projects.filter((project) => project.projectID !== projectID);
+    setProjects(filtered);
+  };
+
   return (
     <ProjectContext.Provider
       value={{
         projects,
         favoriteProjects,
         toggleFavorite,
+        addProject,
+        updateProject,
+        deleteProject
       }}
     >
       {children}

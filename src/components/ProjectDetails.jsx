@@ -1,4 +1,12 @@
-// import React from 'react';
+/**
+ * ProjectDetails.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: To show Project details
+ * */
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/constants';
 import { formatDate } from '../utils/utility';
@@ -14,11 +22,6 @@ const ProjectDetails = ({projectDetail}) => {
 
   return (
     <div className="max-w-3xl p-6">
-      {/* Notification Icon */}
-      <div className="flex justify-end relative mb-4">
-        <div className="text-pink-500 text-xl">🔖</div>
-      </div>
-
       {/* Project Info */}
       <div className="space-y-4 text-gray-800">
         <div className="flex">

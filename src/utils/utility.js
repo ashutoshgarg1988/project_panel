@@ -1,3 +1,13 @@
+/**
+ * utility.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: To handle utility functions for project.
+ * */
+
 /** Utility function to convert string to date */
 export const formatDate = (isoString) => {
     return new Date(isoString).toLocaleDateString("en-US", {

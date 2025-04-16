@@ -1,3 +1,12 @@
+/**
+ * ProjectListPage.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: To handle route for project listing page.
+ * */
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -83,8 +92,6 @@ export default function ProjectListPage() {
       }
     }
   ];
-
-  console.log("columns:::",columns);
 
   return (
     <div className='flex flex-col p-4'>

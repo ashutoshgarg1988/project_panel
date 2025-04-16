@@ -1,3 +1,12 @@
+/**
+ * App.jsx
+ * 
+ * Author: Ashutosh Garg
+ * Created: 15/Apr/2025
+ * Last Updated: 15/Apr/2025
+ * 
+ * Description: Main component of project which handles routes and other components init.
+ * */
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import ProjectListPage from './pages/ProjectListPage';
@@ -31,7 +40,7 @@ function App() {
               <Route path={ROUTES.CREATE_PROJECT} element={<CreateEditProjectPage type={'new'}/>} />
               <Route path={ROUTES.Edit_PROJECT} element={<CreateEditProjectPage type={'edit'}/>} />
             </Routes>
-            <ToastContainer position="bottom-right" autoClose={3000} />
+            <ToastContainer position="bottom-right" autoClose={2000} />
           </div>
         </div>
       </div>
