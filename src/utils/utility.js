@@ -24,5 +24,34 @@ export const formatDateForInput = (isoString) => {
     } else {
         return '';
     }
-  };
+};
+
+export const toggleFullScreen = () => {
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+      // Exit fullscreen
+      const element = document;
+      if (element.exitFullscreen) {
+        element.exitFullscreen();
+      } else if (element.mozCancelFullScreen) { // Firefox
+        element.mozCancelFullScreen();
+      } else if (element.webkitExitFullscreen) { // Chrome, Safari and Opera
+        element.webkitExitFullscreen();
+      } else if (element.msExitFullscreen) { // IE/Edge
+        element.msExitFullscreen();
+      }
+    } else {
+      // Enter fullscreen
+      // const element = document.documentElement as HTMLElement;
+      const element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        element.webkitRequestFullscreen();
+      }else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+      }  else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+      }
+    }
+}
   

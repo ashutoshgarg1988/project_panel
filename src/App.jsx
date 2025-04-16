@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import ProfileMenu from './components/ProfileMenu';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -28,8 +29,13 @@ function App() {
         <div className="flex flex-col flex-1">
           {/* Topbar */}
           <div className="bg-slate-200 px-1 py-4 font-bold">
-            <MenuIcon onClick={()=> setSidebarOpen(!sidebarOpen)} className="cursor-pointer"/>
-            <span className="px-2">TOPBAR</span>
+            <div className='flex justify-between'>
+              <div>
+                <MenuIcon onClick={()=> setSidebarOpen(!sidebarOpen)} className="cursor-pointer text-gray-700"/>
+                <span className="px-2 text-gray-700">TOPBAR</span>
+              </div>
+              <ProfileMenu/>
+            </div>
           </div>
           {/* Main content */}
           <div className="flex-1 p-4 bg-gray-100" style={{ maxHeight: 'calc(100dvh - 60px)' }}>

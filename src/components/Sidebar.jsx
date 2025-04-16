@@ -17,7 +17,7 @@ const Sidebar = () => {
   const { favoriteProjects } = useProjects();
 
   return (
-    <div className="w-54 min-h-screen bg-violet-50 border-r shadow-sm">
+    <div className="w-54 h-dvh bg-violet-50 border-r shadow-sm">
       {/* Logo */}
       <div className="px-6 py-3 border-b flex items-center text-2xl font-bold cursor-pointer" onClick={() => navigate(ROUTES.PROJECTS)}>
         <span className="text-black">PROJECT</span>
@@ -25,26 +25,28 @@ const Sidebar = () => {
       </div>
 
       {/* Menu */}
-      <div className="px-6 py-2 font-bold">Favorite Projects</div>
-      <nav className="py-4 flex flex-col gap-1 px-2">
-        {favoriteProjects.length > 0 && favoriteProjects.map((item) => {
-          const isActive = location.pathname === (ROUTES.PROJECTS + '/' + item.projectID);
-          return (
-            <Link
-              key={item.projectName}
-              to={ROUTES.PROJECTS + '/' + item.projectID}
-              className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all ${
-                isActive
-                  ? 'bg-blue-700 text-white'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <span className="material-symbols-outlined"><AcUnitIcon/></span>
-              <span>{item.projectName}</span>
-            </Link>
-          );
-        })}
-      </nav>
+      <div>
+        <div className="px-6 py-2 font-bold">Favorite Projects</div>
+        <nav className="py-4 flex flex-col gap-1 px-2 overflow-auto" style={{ maxHeight: 'calc(100dvh - 100px)' }}>
+          {favoriteProjects.length > 0 && favoriteProjects.map((item) => {
+            const isActive = location.pathname === (ROUTES.PROJECTS + '/' + item.projectID);
+            return (
+              <Link
+                key={item.projectName}
+                to={ROUTES.PROJECTS + '/' + item.projectID}
+                className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all ${
+                  isActive
+                    ? 'bg-blue-700 text-white'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <span className="material-symbols-outlined"><AcUnitIcon/></span>
+                <span>{item.projectName}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </div>
   );
 };

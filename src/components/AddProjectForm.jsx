@@ -40,12 +40,12 @@ const AddProjectForm = ({existingData}) => {
   };
 
   const validationSchema = Yup.object({
-    projectID: Yup.string().required('Required'),
-    projectName: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
-    startDate: Yup.date().required('Required'),
-    endDate: Yup.date().required('Required'),
-    manager: Yup.string().required('Required'),
+    projectID: Yup.string().required('Project ID is required'),
+    projectName: Yup.string().required('Project name is required'),
+    description: Yup.string().required('Description is required'),
+    startDate: Yup.date().required('Start date is required'),
+    endDate: Yup.date().required('End date is required'),
+    manager: Yup.string().required('Manager name is required'),
   });
 
   const handleSubmit = (values) => {
@@ -89,7 +89,7 @@ const AddProjectForm = ({existingData}) => {
       <Form className="max-w-3xl p-6 space-y-6 text-gray-800">
         {/* Project ID */}
         <div className="flex items-center">
-          <label htmlFor="projectID" className="w-40 font-medium">Project ID</label>
+          <label className="w-40 font-medium">Project ID</label>
           <div className="w-full">
             <Field
               name="projectID"
@@ -103,7 +103,7 @@ const AddProjectForm = ({existingData}) => {
 
         {/* Project Name */}
         <div className="flex items-center">
-          <label htmlFor="projectName" className="w-40 font-medium">Project Name</label>
+          <label className="w-40 font-medium">Project Name</label>
           <div className="w-full">
             <Field
               name="projectName"
@@ -114,9 +114,22 @@ const AddProjectForm = ({existingData}) => {
           </div>
         </div>
 
+        {/* Project Manager */}
+        <div className="flex items-center">
+          <label className="w-40 font-medium">Project Manager</label>
+          <div className="w-full">
+            <Field
+              name="manager"
+              type="text"
+              className="border border-gray-300 px-3 py-1 rounded w-full"
+            />
+            <ErrorMessage name="manager" component="div" className="text-red-500 text-sm" />
+          </div>
+        </div>
+
         {/* Description */}
         <div className="flex items-start">
-          <label htmlFor="description" className="w-40 font-medium pt-2">Description</label>
+          <label className="w-40 font-medium pt-2">Description</label>
           <div className="w-full">
             <Field
               as="textarea"
@@ -130,7 +143,7 @@ const AddProjectForm = ({existingData}) => {
 
         {/* Start Date */}
         <div className="flex items-center">
-          <label htmlFor="startDate" className="w-40 font-medium">Start Date</label>
+          <label className="w-40 font-medium">Start Date</label>
           <div className="w-full">
             <Field
               name="startDate"
@@ -143,7 +156,7 @@ const AddProjectForm = ({existingData}) => {
 
         {/* End Date */}
         <div className="flex items-center">
-          <label htmlFor="endDate" className="w-40 font-medium">End Date</label>
+          <label className="w-40 font-medium">End Date</label>
           <div className="w-full">
             <Field
               name="endDate"
@@ -151,19 +164,6 @@ const AddProjectForm = ({existingData}) => {
               className="border border-gray-300 px-3 py-1 rounded w-full"
             />
             <ErrorMessage name="endDate" component="div" className="text-red-500 text-sm" />
-          </div>
-        </div>
-
-        {/* Project Manager */}
-        <div className="flex items-center">
-          <label htmlFor="manager" className="w-40 font-medium">Project Manager</label>
-          <div className="w-full">
-            <Field
-              name="manager"
-              type="text"
-              className="border border-gray-300 px-3 py-1 rounded w-full"
-            />
-            <ErrorMessage name="manager" component="div" className="text-red-500 text-sm" />
           </div>
         </div>
 
