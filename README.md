@@ -7,12 +7,11 @@ A modern React application bundled with Webpack, featuring custom configuration 
 
 - ⚛️ React
 - 🔧 Webpack
-- 💅 TailwindCSS (optional)
+- 🎨 Material UI (MUI)
+- 💅 TailwindCSS
 - 📜 Babel
 - 🧼 ESLint
-- 🛠️ Other tooling: React Router, custom hook etc.
-
----
+- 🛠️ Other tooling: React Router, custom hooks, etc.
 
 ## Getting Started
 
