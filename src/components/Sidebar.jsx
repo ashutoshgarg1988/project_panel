@@ -19,7 +19,7 @@ const Sidebar = () => {
   return (
     <div className="w-54 h-dvh bg-violet-50 border-r shadow-sm">
       {/* Logo */}
-      <div className="px-6 py-3 border-b flex items-center text-2xl font-bold cursor-pointer" onClick={() => navigate(ROUTES.PROJECTS)}>
+      <div className="px-6 py-3 border-b flex items-center text-2xl font-bold cursor-pointer border" onClick={() => navigate(ROUTES.PROJECTS)}>
         <span className="text-black">PROJECT</span>
         <span className="text-blue-600 ml-1">LIST</span>
       </div>

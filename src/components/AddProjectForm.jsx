@@ -76,7 +76,7 @@ const AddProjectForm = ({existingData}) => {
     } else {
       toast.success("Project details saved successfully!");
     }
-    existingData ? updateProject(projectInfo) : addProject(projectInfo);
+    existingData ? updateProject(projectInfo, 1500) : addProject(projectInfo, 1500);
     navigate(ROUTES.PROJECTS);
   };
 

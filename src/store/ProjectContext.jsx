@@ -31,6 +31,7 @@ const rows = [
 // Provider component
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState(rows);
+  const [isLoadingState, setIsLoadingState] = useState(false);
   const [favoriteProjects, setFavoriteProjects] = useState([]);
 
   // Create and update favoriteProjects whenever projects change
@@ -55,13 +56,18 @@ export const ProjectProvider = ({ children }) => {
   };
 
   // Update an existing project by ID
-  const updateProject = (updatedData) => {
-    const updatedProjects = projects.map((project) =>
-      project.projectID === updatedData.projectID
-        ? { ...project, ...updatedData }
-        : project
-    );
-    setProjects(updatedProjects);
+  const updateProject = (updatedData, delayTimer) => {
+    setIsLoadingState(true);
+    if (!delayTimer) delayTimer = 0;
+    setTimeout(() => {
+      setIsLoadingState(false);
+      const updatedProjects = projects.map((project) =>
+        project.projectID === updatedData.projectID
+          ? { ...project, ...updatedData }
+          : project
+      );
+      setProjects(updatedProjects);
+    }, delayTimer);
   };
 
   // Delete a project by ID
@@ -78,7 +84,8 @@ export const ProjectProvider = ({ children }) => {
         toggleFavorite,
         addProject,
         updateProject,
-        deleteProject
+        deleteProject,
+        isLoadingState
       }}
     >
       {children}
